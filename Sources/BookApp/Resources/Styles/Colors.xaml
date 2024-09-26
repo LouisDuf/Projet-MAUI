@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="BackGroundApp">#F9F9F9</Color>
+
+    <Color x:Key="Primary">#FB0A10</Color>
+    <Color x:Key="Secondary">#DFD8F7</Color>
+    <Color x:Key="Tertiary">#2B0B98</Color>
+    <Color x:Key="White">White</Color>
+    <Color x:Key="Black">Black</Color>
+    <Color x:Key="Gray100">#E1E1E1</Color>
+    <Color x:Key="Gray200">#C8C8C8</Color>
+    <Color x:Key="Gray300">#ACACAC</Color>
+    <Color x:Key="Gray400">#919191</Color>
+    <Color x:Key="Gray500">#6E6E6E</Color>
+    <Color x:Key="Gray550">#595959</Color>
+    <Color x:Key="Gray600">#404040</Color>
+    <Color x:Key="Gray900">#212121</Color>
+    <Color x:Key="Gray950">#141414</Color>
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
+    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
+    <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}"/>
+    <SolidColorBrush x:Key="Gray200Brush" Color="{StaticResource Gray200}"/>
+    <SolidColorBrush x:Key="Gray300Brush" Color="{StaticResource Gray300}"/>
+    <SolidColorBrush x:Key="Gray400Brush" Color="{StaticResource Gray400}"/>
+    <SolidColorBrush x:Key="Gray500Brush" Color="{StaticResource Gray500}"/>
+    <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
+    <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
+    <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+
+    <Color x:Key="Yellow100Accent">#F7B548</Color>
+    <Color x:Key="Yellow200Accent">#FFD590</Color>
+    <Color x:Key="Yellow300Accent">#FFE5B9</Color>
+    <Color x:Key="Cyan100Accent">#28C2D1</Color>
+    <Color x:Key="Cyan200Accent">#7BDDEF</Color>
+    <Color x:Key="Cyan300Accent">#C3F2F4</Color>
+    <Color x:Key="Blue100Accent">#3E8EED</Color>
+    <Color x:Key="Blue200Accent">#72ACF1</Color>
+    <Color x:Key="Blue300Accent">#A7CBF6</Color>
+
+    <Color x:Key="DividerLight">#E1E1E1</Color>
+    <Color x:Key="DividerDark">#3D3C41</Color>
+    <Color x:Key="StarOnLight">Orange</Color>
+    <Color x:Key="StarOnDark">Orange</Color>
+    <Color x:Key="StarOffLight">#E1E1E1</Color>
+    <Color x:Key="StarOffDark">#717171</Color>
+    <Color x:Key="ChevronLight">#C5C5C7</Color>
+    <Color x:Key="ChevronDark">#59585D</Color>
+    <Color x:Key="BookDataLight">#6E6E6E</Color>
+    <Color x:Key="BookDataDark">#AAAAAA</Color>
+    <Color x:Key="groupHeaderLabelLight">#807F84</Color>
+    <Color x:Key="groupHeaderLabelDark">#9998A0</Color>
+    <Color x:Key="groupHeaderBackgroundLight">#F1F1F6</Color>
+    <Color x:Key="groupHeaderBackgroundDark">#1C1C1E</Color>
+    <Color x:Key="bookItemStatusLight">#6E6E6E</Color>
+    <Color x:Key="bookItemStatusDark">#87878C</Color>
+    <Color x:Key="indexScrollLight">#3378F7</Color>
+    <Color x:Key="indexScrollDark">#3686F8</Color>
+    <Color x:Key="scanMenuBackgroundLight">#F4F4F4</Color>
+    <Color x:Key="scanMenuBackgroundDark">#262626</Color>
+    <Color x:Key="scanMenuTitleLight">#C8C8C8</Color>
+    <Color x:Key="scanMenuTitleDark">#9E9F13</Color>
+    <Color x:Key="scanMenuDividerLight">#C8C8C8</Color>
+    <Color x:Key="scanMenuDividerDark">#726D6A</Color>
+    <Color x:Key="scanMenuStrongDividerLight">#C8C8C8</Color>
+    <Color x:Key="scanMenuStrongDividerDark">#242424</Color>
+    <Color x:Key="filterCountColorLight">#919191</Color>
+    <Color x:Key="filterCountColorDark">#99989E</Color>
+    <Color x:Key="filterDividerLight">#E1E1E1</Color>
+    <Color x:Key="filterDividerDark">#3C3B41</Color>
+    <Color x:Key="selectorBackgroundLight">#E1E1E1</Color>
+    <Color x:Key="selectorBackgroundDark">#323137</Color>
+    <Color x:Key="selectorSelectedLight">White</Color>
+    <Color x:Key="selectorSelectedDark">#6A696F</Color>
+    <Color x:Key="selectorLabelLight">Black</Color>
+    <Color x:Key="selectorLabelDark">#FDFDFD</Color>
+    <Color x:Key="filterMenuLight">#F8F8F8</Color>
+    <Color x:Key="filterMenuDark">#1C1C1E</Color>
+
+</ResourceDictionary>

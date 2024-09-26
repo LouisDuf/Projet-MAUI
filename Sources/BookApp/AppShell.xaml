@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="BookApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:BookApp"
+    xmlns:pages="clr-namespace:BookApp.Pages"
+    Shell.FlyoutBehavior="Disabled">
+
+
+    <TabBar >
+        <Tab Title="My Library"
+             Icon="books_vertical_fill.svg">
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="Mainpage"/>
+        </Tab>
+        <Tab Title="My lists"
+             Icon="list_bullet.svg">
+            <ShellContent ContentTemplate="{DataTemplate pages:Tous}" Route="TousPage"/>
+        </Tab>
+        <Tab Title="My Readings"
+             Icon="bookmark_fill.svg">
+            <ShellContent ContentTemplate="{DataTemplate pages:EmpruntsPrets}" Route="EmpruntsPretsPage"/>
+        </Tab>
+        <Tab Title="Search"
+             Icon="magnifyingglass.svg">
+            <ShellContent ContentTemplate="{DataTemplate pages:Filtrage}" Route="FiltragePage"/>
+        </Tab>
+    </TabBar>
+
+</Shell>

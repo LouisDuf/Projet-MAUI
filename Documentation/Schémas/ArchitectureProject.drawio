@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net" modified="2023-09-20T12:17:57.703Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/115.0" etag="sVb7Rw98gNrLW8AO19HB" version="21.7.5" type="device">
+  <diagram name="Page-1" id="e78aO4FO6e_sPu6jAY4w">
+    <mxGraphModel dx="2261" dy="726" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="XgXC638uMGpcY1R6JfbD-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="XgXC638uMGpcY1R6JfbD-1" target="XgXC638uMGpcY1R6JfbD-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XgXC638uMGpcY1R6JfbD-1" value="MAUI" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XgXC638uMGpcY1R6JfbD-2" value="&lt;div align=&quot;left&quot;&gt;Contient:&lt;br&gt;- Pages/Vues&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;- VM applicative&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="220" y="440" width="250" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="XgXC638uMGpcY1R6JfbD-3" value="Model" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XgXC638uMGpcY1R6JfbD-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="XgXC638uMGpcY1R6JfbD-4" target="XgXC638uMGpcY1R6JfbD-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XgXC638uMGpcY1R6JfbD-4" value="Stub" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="160" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XgXC638uMGpcY1R6JfbD-5" value="WebService" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XgXC638uMGpcY1R6JfbD-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="XgXC638uMGpcY1R6JfbD-6" target="XgXC638uMGpcY1R6JfbD-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XgXC638uMGpcY1R6JfbD-6" value="VMWrapper" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-290" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XgXC638uMGpcY1R6JfbD-7" value="&lt;div align=&quot;left&quot;&gt;Contient:&lt;br&gt;- Interface (pour récup les data)&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-120" y="440" width="250" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

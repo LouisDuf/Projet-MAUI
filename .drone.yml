@@ -1,0 +1,68 @@
+kind: pipeline
+type: docker
+name: pocketPipeline
+
+trigger:
+  #branch:
+    #- master
+  event:
+    - push
+
+steps:
+  #- name: lint
+  - name: format
+    image: hub.codefirst.iut.uca.fr/marc.chevaldonne/codefirst-dotnet7-maui:latest
+    commands:
+      - dotnet tool install -g CSharpier # Installez CSharpier si necessaire
+      - export PATH="$PATH:/root/.dotnet/tools"  # Ajoutez le chemin des outils .NET Core au PATH
+      - cd Sources/
+      - dotnet-csharpier --check .  # Verifie le formatage
+
+  - name: build
+    image: hub.codefirst.iut.uca.fr/marc.chevaldonne/codefirst-dotnet7-maui:latest
+    commandes:
+      - cd Sources/
+      - dotnet restore BookApp.sln
+      - dotnet build BookApp.sln -c Release --no-restore /p:AndroidSdkDirectory=$ANDROID_SDK_ROOT -property:Aapt2ToolPath=$ANDROID_SDK_ROOT/build-tools/33.0.0
+      - dotnet publish BookApp/BookApp.csproj -c Release --no-restore -o $CI_PROJECT_DIR/build/release -f:net7.0-android /p:AndroidSdkDirectory=/usr/lib/android-sdk
+
+  - name: test
+    image: hub.codefirst.iut.uca.fr/marc.chevaldonne/codefirst-dotnet7-maui:latest
+    commands:
+      - cd Sources/
+      - dotnet restore BookApp.sln
+      - dotnet test BookApp.sln --no-restore /p:AndroidSdkDirectory=$ANDROID_SDK_ROOT -property:Aapt2ToolPath=$ANDROID_SDK_ROOT/build-tools/33.0.0
+    depends_on: [build]
+
+  - name: analyse
+    image: hub.codefirst.iut.uca.fr/marc.chevaldonne/codefirst-dronesonarplugin-dotnet7-maui
+    secrets: [ SECRET_SONAR_LOGIN ]
+    environment:
+      sonar_host: https://codefirst.iut.uca.fr/sonar/
+      sonar_token:
+        from_secret: SECRET_SONAR_LOGIN
+      project_key: BookApp
+      coverage_exclusions: "Tests/**"
+    commands:
+      - cd Sources/
+      - dotnet restore BookApp.sln
+      - dotnet sonarscanner begin /k:$${project_key} /d:sonar.host.url=$${sonar_host} /d:sonar.coverageReportPaths="coveragereport/SonarQube.xml" /d:sonar.coverage.exclusions=$${coverage_exclusions} /d:sonar.login=$${sonar_token} 
+      - dotnet build BookApp.sln -c Release --no-restore /p:AndroidSdkDirectory=$ANDROID_SDK_ROOT -property:Aapt2ToolPath=$ANDROID_SDK_ROOT/build-tools/33.0.0
+      - dotnet test BookApp.sln --logger trx --no-restore /p:AndroidSdkDirectory=$ANDROID_SDK_ROOT -property:Aapt2ToolPath=$ANDROID_SDK_ROOT/build-tools/33.0.0 /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --collect "XPlat Code Coverage"
+      - reportgenerator -reports:"**/coverage.cobertura.xml" -reporttypes:SonarQube -targetdir:"coveragereport"
+      - dotnet publish BookApp/BookApp.csproj -c Release --no-restore -o $CI_PROJECT_DIR/build/release -f:net7.0-android /p:AndroidSdkDirectory=/usr/lib/android-sdk
+      - dotnet sonarscanner end /d:sonar.login=$${sonar_token}
+    depends_on: [test]
+
+  - name: generate-and-deploy-docs
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-docdeployer
+    failure: ignore
+    volumes:
+      - name: docs
+        path: /docs
+    commands:
+      - /entrypoint.sh
+    #environment: 
+    #      NODOXYGEN: true
+  #- name: deploy
+

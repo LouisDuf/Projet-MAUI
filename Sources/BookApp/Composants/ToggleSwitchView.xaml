@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BookApp.Composants.ToggleSwitchView">
+    <Grid 
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand"
+        Padding="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout 
+            Orientation="Horizontal" 
+            HorizontalOptions="Center" 
+            VerticalOptions="Center"
+            Grid.Row="0"
+            Spacing="30">
+
+            <Label 
+                x:Name="OffLabel" 
+                Text="Prêts" 
+                Opacity="0.25"
+                VerticalTextAlignment="Center"/>
+
+            <Grid
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Scale="1.5">
+                
+                <Switch 
+                x:Name="ToggleSwitch" 
+                Toggled="OnToggled" />
+            
+            </Grid>
+            
+            <Label 
+                x:Name="OnLabel" 
+                Text="Emprunts" 
+                Opacity="0.25"
+                VerticalTextAlignment="Center"/>
+        </StackLayout>
+
+        <!-- Autres éléments de l'interface utilisateur si nécessaire -->
+    </Grid>
+</ContentView>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:composants="clr-namespace:BookApp.Composants"
+             x:Name="ThisPage"
+             x:Class="BookApp.Pages.EmpruntsPrets">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False"/>
+    </Shell.BackButtonBehavior>
+    <Shell.TitleView>
+        <Grid RowDefinitions="Auto" VerticalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <HorizontalStackLayout  Grid.Column="0">
+                <Image 
+                Source="Chevron_left.svg" 
+                HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer 
+                          Command="{Binding Source={x:Reference ThisPage}, Path=Nav.BackButtonCommand}" NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="Red" />
+                    </Image.Behaviors>
+                </Image>
+
+                <Label
+             Text="Mes livres"
+             FontFamily="Strande2"
+             TextColor="Red"
+             FontSize="Medium"
+             VerticalTextAlignment="Center"
+             HorizontalOptions="Start"
+             Grid.Column="0" />
+            </HorizontalStackLayout>
+
+            <Label
+            Text="Tous"
+            FontFamily="Strande2"
+            TextColor="Black"
+            FontSize="Medium"
+            VerticalTextAlignment="Center"
+            HorizontalOptions="Center"
+            Grid.Column="1" />
+
+            <HorizontalStackLayout  Grid.Column="2">
+                <Image 
+            Source="plus_icone.svg" 
+            HorizontalOptions="End"
+            Margin="0,0,20,0"
+            Grid.Column="2">
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="Red" />
+                    </Image.Behaviors>
+                </Image>
+
+                <Image 
+            Source="arrow_up_arrow_down.svg" 
+            HorizontalOptions="End"
+            Margin="0,0,10,0"
+            Grid.Column="2">
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="Red" />
+                    </Image.Behaviors>
+                </Image>
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.TitleView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Rectangle  HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="Start" />
+        <composants:ToggleSwitchView Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <Rectangle  HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End" />
+
+        <ScrollView Grid.Row="1">
+            <composants:GroupCollection/>
+        </ScrollView>
+    </Grid>
+</ContentPage>

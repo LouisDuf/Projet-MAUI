@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:BookApp.ViewModel"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="ThisPage"
+    x:Class="BookApp.MainPage">
+    <Shell.TitleView>
+        <Grid RowDefinitions="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+           
+            <Label
+            Text="Modifier"
+            FontFamily="Strande2"
+            TextColor="Red"
+            VerticalTextAlignment="Center"
+            HorizontalOptions="Start"
+            HeightRequest="50"
+            FontSize="Medium"
+            Grid.Column="0" />
+
+            <Image 
+            Source="plus_icone.svg" 
+            HorizontalOptions="End"
+            Margin="0,0,20,0"
+            Grid.Column="2">
+                <Image.Behaviors>
+                    <toolkit:IconTintColorBehavior TintColor="Red" />
+                </Image.Behaviors>
+            </Image>
+        </Grid>
+    </Shell.TitleView>
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+    <StackLayout>
+        <Label FontSize="35" FontFamily="SF-Pro-Display-Bold" Padding="10">Mes livres</Label>
+        <Rectangle  HeightRequest="1" BackgroundColor="black" VerticalOptions="End" />
+        <CollectionView ItemsSource="{Binding MenuItemsLivre}" Margin="25,0,0,0" BackgroundColor="#F9F9F9">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vm:ViewModelMenuItem">
+                    <Grid RowDefinitions="Auto" Style="{StaticResource StyleCollectionGrid}" Padding="2">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference ThisPage}, Path=Nav.MenuItemsCommand}"
+                                                  CommandParameter="{Binding .}" NumberOfTapsRequired="1"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0"
+                               Source="{Binding Icone}"
+                               HeightRequest="25"
+                               WidthRequest="25"/>
+                        <Label FontFamily="SF-Compact-Display-Semibold" Grid.Column="1"
+                               Text="{Binding Name}"
+                           FontAttributes="Bold"
+                               Padding="5"
+                               VerticalOptions="Center"/>
+                        <Grid Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="2"
+                                   Text="{Binding Number}"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   Margin="0,0,40,0"
+                                   HorizontalOptions="End"/>
+                            <Image Grid.Column="2"
+                                    Source="chevron_right.svg"
+                                    HeightRequest="25"
+                                    WidthRequest="25"
+                                    HorizontalOptions="End"/>
+                        </Grid>
+                        <Rectangle Grid.ColumnSpan="4" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End">
+                            <Rectangle.Triggers>
+                                <DataTrigger TargetType="Rectangle" Binding="{Binding IsLastItem}" Value="true">
+                                    <Setter Property="IsVisible" Value="False"/>
+                                </DataTrigger>
+                            </Rectangle.Triggers>
+                        </Rectangle>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+        <Rectangle  HeightRequest="1" BackgroundColor="black" VerticalOptions="End"/>
+        <Label FontFamily="SF-Pro-Display-Heavy" FontSize="20" Padding="10">Filtres</Label>
+        <Rectangle  HeightRequest="1" BackgroundColor="black" VerticalOptions="End"/>
+
+        <CollectionView ItemsSource="{Binding MenuItemsFiltre}" Margin="25,0,0,0" BackgroundColor="#F9F9F9">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vm:ViewModelMenuItem">
+                    <Grid RowDefinitions="Auto" Style="{StaticResource StyleCollectionGrid}" Padding="2">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference ThisPage}, Path=Nav.MenuItemsFiltreCommand}"
+                                                  CommandParameter="{Binding .}" NumberOfTapsRequired="1"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0"
+                               Source="{Binding Icone}"
+                               HeightRequest="25"
+                               WidthRequest="25"/>
+                        <Label FontFamily="SF-Compact-Display-Semibold" Grid.Column="1"
+                               Text="{Binding Name}"
+                                FontAttributes="Bold"
+                               Padding="5"
+                               VerticalOptions="Center"/>
+                        <Grid Grid.Column="2" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label FontFamily="SF-Compact-Display-Semibold" Grid.Column="2"
+                                Text="{Binding Number}"
+                                FontAttributes="Bold"
+                                VerticalOptions="Center"
+                                Margin="0,0,40,0"
+                                HorizontalOptions="End"/>
+                            <Image Grid.Column="2"
+                                Source="chevron_right.svg"
+                                HeightRequest="25"
+                                WidthRequest="25"
+                                HorizontalOptions="End"/>
+                        </Grid>
+                        <Rectangle Grid.ColumnSpan="4" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End">
+                            <Rectangle.Triggers>
+                                <DataTrigger TargetType="Rectangle" Binding="{Binding IsLastItem}" Value="true">
+                                    <Setter Property="IsVisible" Value="False"/>
+                                </DataTrigger>
+                            </Rectangle.Triggers>
+                        </Rectangle>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </StackLayout>
+</ContentPage>

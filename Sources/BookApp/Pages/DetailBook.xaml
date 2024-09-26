@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:BookApp.ViewModel"
+    xmlns:usecase="clr-namespace:BookApp.UseCase" 
+    x:Name="ThisPage"
+    x:Class="BookApp.Pages.DetailBook">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False"/>
+    </Shell.BackButtonBehavior>
+    <Shell.TitleView>
+        <Grid RowDefinitions="Auto" VerticalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <HorizontalStackLayout  Grid.Column="0">
+                <Image 
+                Source="Chevron_left.svg" 
+                HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer 
+                           Command="{Binding Source={x:Reference ThisPage}, Path=Nav.BackButtonCommand}" NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="Red" />
+                    </Image.Behaviors>
+                </Image>
+
+                <Label
+             Text="Tous"
+             FontFamily="Strande2"
+             TextColor="Red"
+             FontSize="Medium"
+             VerticalTextAlignment="Center"
+             HorizontalOptions="Start"
+             Grid.Column="0" />
+            </HorizontalStackLayout>
+
+            <Label
+            Text="Détails du livre"
+            FontFamily="Strande2"
+            TextColor="Black"
+            FontSize="Medium"
+            VerticalTextAlignment="Center"
+            HorizontalOptions="Center"
+            Grid.Column="1" />
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <usecase:AuthorsListToStringConverter x:Key="authorsConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Rectangle HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End"/>
+                <Grid RowDefinitions="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="125"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Margin="10,10,10,0" Grid.Column="0"  Source="{Binding BookDetail.ImageLarge}"/>
+                    <StackLayout Grid.Column="1">
+                        <Label FontAttributes="Bold" FontSize="20" Text="{Binding BookDetail.Title }"/>
+                        <Grid RowDefinitions="auto" VerticalOptions="EndAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout x:Name="StarLayout" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+                                <!-- Les étoiles seront ajoutées ici via le code-behind -->
+                            </StackLayout>
+                            <Label x:Name="RatingLabel" Grid.Column="1" FontSize="Medium" HorizontalOptions="CenterAndExpand"/>
+                        </Grid>
+                    </StackLayout>
+                </Grid>
+                <Rectangle  Margin="25,10,0,0" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End"/>
+                <Grid>
+                    <Label FontAttributes="Bold" Margin="25,0,0,0" VerticalTextAlignment="Center" Text="Info en ligne"/>
+                    <Button Grid.Column="1"
+                    ImageSource="chevron_right.svg"
+                    HeightRequest="35"
+                    WidthRequest="35"
+                    BackgroundColor="White"
+                    HorizontalOptions="End"/>
+                </Grid>
+                <Rectangle Margin="25,0,0,10" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End"/>
+                <Label FontAttributes="Bold" Margin="25,0,0,0" VerticalTextAlignment="Center"  Text="Auteur"/>
+                <Label Margin="25,0,0,0" VerticalTextAlignment="Center"  Text="{Binding BookDetail.Authors, Converter={StaticResource authorsConverter}}"/>
+                <Rectangle Margin="25,10,0,10" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End"/>
+                <Label FontAttributes="Bold" Margin="25,0,0,0" VerticalTextAlignment="Center"  Text="Maison d'édition"/>
+                <Label Margin="25,0,0,0" VerticalTextAlignment="Center"  Text="{Binding BookDetail.Authors}"/>
+                <Rectangle Margin="25,10,0,10" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End"/>
+                <Label FontAttributes="Bold" Margin="25,0,0,0" VerticalTextAlignment="Center"   Text="Résumer"/>
+                <Label  Margin="25,0,0,0" VerticalTextAlignment="Center" Text="{Binding BookDetail.Format}"/>
+                <Rectangle Margin="25,10,0,10" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End" />
+                <Label FontAttributes="Bold" Margin="25,0,0,0" VerticalTextAlignment="Center" Text="Details"/>
+                <Grid Margin="25,0,20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="Nombre de pages"/>
+                    <Label Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="End" Text="{Binding BookDetail.NbPages}"/>
+                    <Label Grid.Row="1" Grid.Column="0" Text="Langue"/>
+                    <Label Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="End" Text="{Binding BookDetail.Language}"/>
+                    <Label Grid.Row="2" Grid.Column="0" Text="ISBN"/>
+                    <Label Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="End" Text="{Binding BookDetail.Status}"/>
+                </Grid>
+                <Rectangle Margin="25,10,0,10" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End" />
+                <Label FontAttributes="Bold" Margin="25,0,0,0" VerticalTextAlignment="Center" Text="Status de lecture"/>
+                <Grid RowDefinitions="auto" Margin="25,0,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Status"/>
+                    <Label Grid.Column="1" HorizontalTextAlignment="End" Text="{Binding BookDetail.Status}"/>
+                </Grid>
+                <Rectangle Margin="25,10,0,10" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End" />
+                <Label FontAttributes="Bold" Margin="25,0,0,0" VerticalTextAlignment="Center" Text="biliothèque"/>
+                <Grid RowDefinitions="auto" Margin="25,0,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Ajouter le"/>
+                    <Label Grid.Column="1" HorizontalTextAlignment="End" Text="{Binding BookDetail.PublishDate}"/>
+                </Grid>
+                <Rectangle Margin="25,10,0,10" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End" />
+                <Rectangle HeightRequest="100" Fill="Transparent"/>
+                <Rectangle Margin="25,10,0,10" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End" />
+                <Grid RowDefinitions="auto" Margin="25,0,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" HeightRequest="25"
+                        WidthRequest="25" Source="folder.svg">
+                        <Image.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="Red" />
+                        </Image.Behaviors>
+                    </Image>
+                    <Label Margin="10,0,0,0" VerticalOptions="Center" Grid.Column="1" TextColor="Red" Text="Déplacer le livre"/>
+                </Grid>
+                <Rectangle Margin="25,10,0,10" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End" />
+                <Grid RowDefinitions="auto" Margin="25,0,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" HeightRequest="25"
+                        WidthRequest="25" Source="plus_circle.svg">
+                        <Image.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="Red" />
+                        </Image.Behaviors>
+                    </Image>
+                    <Label Margin="10,0,0,0" VerticalOptions="Center" Grid.Column="1" TextColor="Red" Text="Ajouter à la liste à lire plus tard"/>
+                </Grid>
+                <Rectangle Margin="25,10,0,10" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End" />
+                <Grid RowDefinitions="auto" Margin="25,0,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PopUpCommand}" NumberOfTapsRequired="1"/>
+                    </Grid.GestureRecognizers>
+                    <Image Grid.Column="0" HeightRequest="25"
+                        WidthRequest="25" Source="eyeglasses.svg">
+                        <Image.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="Red" />
+                        </Image.Behaviors>
+                    </Image>
+                    <Label Margin="10,0,0,0" VerticalOptions="Center" Grid.Column="1" TextColor="Red" Text="Changer le statut de lecture"/>
+                </Grid>
+                <Rectangle Margin="25,10,0,10" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End" />
+                <Grid RowDefinitions="auto" Margin="25,0,20,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" HeightRequest="25"
+                        WidthRequest="25" Source="person.svg">
+                        <Image.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="Red" />
+                        </Image.Behaviors>
+                    </Image>
+                    <Label Margin="10,0,0,0" VerticalOptions="Center" Grid.Column="1" TextColor="Red" Text="Prêter le livre"/>
+                </Grid>
+                <BoxView HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="EndAndExpand" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

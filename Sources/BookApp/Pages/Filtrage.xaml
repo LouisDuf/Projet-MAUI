@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:composants="clr-namespace:BookApp.Composants"
+    x:Name="ThisPage"
+    x:Class="BookApp.Pages.Filtrage">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False"/>
+    </Shell.BackButtonBehavior>
+    <Shell.TitleView>
+        <Grid RowDefinitions="Auto" VerticalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <HorizontalStackLayout  Grid.Column="0">
+                <Image 
+                Source="Chevron_left.svg" 
+                HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer 
+                         Command="{Binding Source={x:Reference ThisPage}, Path=Nav.BackButtonCommand}" NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="Red" />
+                    </Image.Behaviors>
+                </Image>
+            </HorizontalStackLayout>
+
+            <Label
+            Text="{Binding Source={x:Reference ThisPage}, Path=Title}"
+            FontFamily="Strande2"
+            TextColor="Black"
+            FontSize="Medium"
+            VerticalTextAlignment="Center"
+            HorizontalOptions="Center"
+            Grid.Column="1" />
+
+            <HorizontalStackLayout  Grid.Column="2">
+            <Image 
+            Source="arrow_up_arrow_down.svg" 
+            HorizontalOptions="End"
+            Margin="0,0,10,0"
+            Grid.Column="2">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer 
+                        Command="{Binding SortCommand }" 
+                        CommandParameter="name"
+                        NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="Red" />
+                    </Image.Behaviors>
+                </Image>
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <Rectangle HeightRequest="1" BackgroundColor="LightGray"/>
+            <SearchBar Placeholder="Rechercher des auteurs..."
+                       Text="{Binding SearchQuery, Mode=TwoWay}"
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference Name=SearchBar}}"/>
+            <composants:CollectionFiltrage/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
